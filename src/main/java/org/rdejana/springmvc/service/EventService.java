@@ -7,13 +7,9 @@ import org.rdejana.springmvc.model.Event;
 import java.util.List;
 
 public interface EventService {
-
-    void create(Long clubId, EventDto event);
-
-
+    void createEvent(Long clubId, EventDto eventDto);
     List<EventDto> findAllEvents();
-
-    EventDto findById(Long eventId);
-
-    void updateEvents(EventDto eventDto);
+    EventDto findByEventId(Long eventId);
+    void updateEvent(EventDto eventDto);
+    void deleteEvent(long eventId);
 }

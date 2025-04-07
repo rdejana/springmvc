@@ -19,18 +19,18 @@
                     id="title"
                     name="title"
                     th:field="*{title}"
-                    placeholder="Title" />
+                    placeholder="Title">
             <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
           </div>
           <div class="form-group col-md-6">
-            <label for="photoUrl">Photo URL</label>
+            <label for="photoUrl">Photourl</label>
             <input
                     type="text"
                     class="form-control"
                     id="photoUrl"
                     name="photoUrl"
                     th:field="*{photoUrl}"
-                    placeholder="Photo Url" />
+                    placeholder="Photo Url">
             <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
           </div>
         </div>
@@ -42,7 +42,7 @@
                   id="content"
                   name="content"
                   th:field="*{content}"
-                  placeholder="Add some content" />
+                  placeholder="1234 Main St">
           <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}"></p>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>

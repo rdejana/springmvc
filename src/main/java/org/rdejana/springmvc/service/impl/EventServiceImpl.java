@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class EventServiceImpl implements EventService {
-
     private EventRepository eventRepository;
     private ClubRepository clubRepository;
 
@@ -28,42 +27,34 @@ public class EventServiceImpl implements EventService {
         this.clubRepository = clubRepository;
     }
 
-    public void create(Long clubId, EventDto eventDto){
-        //this doesn't handle errors...
-        try {
-            Optional<Club> optionalClub = clubRepository.findById(clubId);
-            if (optionalClub.isEmpty()) {
-                //throw and exception..
-            }
-
-            Club club = clubRepository.findById(clubId).get();//really should handle
-            Event event = mapToEvent(eventDto);
-            event.setClub(club);
-            eventRepository.save(event);
-        }catch (RuntimeException throwable) {
-            System.err.println("We are here and there");
-            System.out.println(throwable.getMessage());
-             throw throwable;
-        }
+    @Override
+    public void createEvent(Long clubId, EventDto eventDto) {
+        Club club = clubRepository.findById(clubId).get();
+        Event event = mapToEvent(eventDto);
+        event.setClub(club);
+        eventRepository.save(event);
     }
 
     @Override
     public List<EventDto> findAllEvents() {
         List<Event> events = eventRepository.findAll();
         return events.stream().map(event -> mapToEventDto(event)).collect(Collectors.toList());
-
     }
 
     @Override
-    public EventDto findById(Long eventId) {
-        return mapToEventDto(eventRepository.findById(eventId).get());
+    public EventDto findByEventId(Long eventId) {
+        Event event = eventRepository.findById(eventId).get();
+        return mapToEventDto(event);
     }
 
     @Override
-    public void updateEvents(EventDto eventDto) {
+    public void updateEvent(EventDto eventDto) {
         Event event = mapToEvent(eventDto);
         eventRepository.save(event);
     }
 
-
+    @Override
+    public void deleteEvent(long eventId) {
+        eventRepository.deleteById(eventId);
+    }
 }

@@ -22,7 +22,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class EventDto {
     private Long id;
-    @NotEmpty(message="Event name should not be empty")
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startTime;
@@ -33,5 +32,4 @@ public class EventDto {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private Club club;
-
 }

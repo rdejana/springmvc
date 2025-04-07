@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ClubService {
     List<ClubDto> findAllClubs();
-    ClubDto findClubById(Long clubId);
     Club saveClub(ClubDto clubDto);
-    void updateClub(ClubDto clubDto);
-    void deleteClub(Long clubId);
+    ClubDto findClubById(Long clubId);
+    void updateClub(ClubDto club);
+    void delete(Long clubId);
     List<ClubDto> searchClubs(String query);
 }
