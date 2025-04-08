@@ -10,3 +10,5 @@ The good
 Some issues I've seen
 - controls for write/deletes are done at the UI...don't do this.
 - no real error handling
+- "HTTP" concepts are pushed into service layer
+  - makes testing annoying...

@@ -47,13 +47,15 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public void updateClub(ClubDto clubDto) {
+    public void updateClub(ClubDto clubDto, String currentUser ){///this is better as it keeps the "web" out of here  */) {
         //this is wrong, we should not be updating the created by here
         //as this does bad things.
         Club orginalClub = clubRepository.findById(clubDto.getId()).get();
 
-        String username = SecurityUtil.getSessionUser();
-        UserEntity user = userRepository.findByUsername(username);
+        //This should be moved out of here so that it isn't LOCKED into
+        //web security.
+      //  String username = SecurityUtil.getSessionUser();
+        UserEntity user = userRepository.findByUsername(currentUser);
         UserEntity owner = orginalClub.getCreatedBy();
         if (!owner.getId().equals(user.getId())) {
            System.out.println("Wrong user...");

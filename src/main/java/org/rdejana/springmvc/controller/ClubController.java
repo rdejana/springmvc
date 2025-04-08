@@ -29,6 +29,11 @@ public class ClubController {
         this.clubService = clubService;
     }
 
+    @GetMapping("/")
+    public String home(Model model) {
+        return "redirect:/clubs";
+    }
+
     @GetMapping("/clubs")
     public String listClubs(Model model) {
         UserEntity user = new UserEntity();
@@ -102,9 +107,9 @@ public class ClubController {
             return "clubs-edit";
         }
         club.setId(clubId);
+        String username = SecurityUtil.getSessionUser();
 
-
-        clubService.updateClub(club);
+        clubService.updateClub(club,username);
         return "redirect:/clubs";
     }
 }
